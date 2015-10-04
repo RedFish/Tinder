@@ -12,6 +12,7 @@ import Parse
 struct Match {
 	var objectId:String
 	var username:String
+	var email:String
 	var image:UIImage
 }
 
@@ -31,7 +32,7 @@ class ContactViewController: UITableViewController {
 			}
 			else if let results = results {
 				for result in results as! [PFUser] {
-					self.matches.append(Match(objectId:result.objectId!, username: result["name"] as! String, image: UIImage()))
+					self.matches.append(Match(objectId:result.objectId!, username: result["name"] as! String, email:result["email"] as! String, image: UIImage()))
 					//getting image
 					let imageFile:PFFile = result["image"] as! PFFile
 					imageFile.getDataInBackgroundWithBlock {
@@ -51,9 +52,9 @@ class ContactViewController: UITableViewController {
 							}
 						}
 					}
+					self.tableView.reloadData()
 				}
 			}
-			self.tableView.reloadData()
 		})
     }
 
@@ -83,49 +84,9 @@ class ContactViewController: UITableViewController {
         return myCell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		let url = NSURL(string: "mailto:\(matches[indexPath.row].email)")
+		UIApplication.sharedApplication().openURL(url!)
+	}
 
 }

@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 	}
 	
 	@IBAction func loginWithFB(sender: AnyObject) {
-		let permissions = ["public_profile"]
+		let permissions = ["public_profile","email"]
 		PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
 			(user: PFUser?, error: NSError?) -> Void in
 			if let user = user {

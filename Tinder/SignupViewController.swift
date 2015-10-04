@@ -41,6 +41,7 @@ class SignupViewController: UIViewController {
 				user.password = "pass"
 				user["image"] = imageFile
 				user["name"] = name
+				user["email"] = "test\(counter)@test.com"
 				user["interestedInWomen"] = false
 				user["gender"] = "female"
 				
@@ -55,7 +56,7 @@ class SignupViewController: UIViewController {
 		**/
 		
 		//get infos from facebook
-		let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, gender"])
+		let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, gender, email"])
 		graphRequest.startWithCompletionHandler( {
 			(connection, result, error) -> Void in
 			if error != nil {
@@ -65,6 +66,7 @@ class SignupViewController: UIViewController {
 				//save user info
 				PFUser.currentUser()?["gender"] = result["gender"]
 				PFUser.currentUser()?["name"] = result["name"]
+				PFUser.currentUser()?["email"] = result["email"]
 				do {
 					try PFUser.currentUser()?.save()
 				} catch { print("cannot save current user") }
