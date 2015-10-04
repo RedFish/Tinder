@@ -22,12 +22,12 @@ class ViewController: UIViewController {
 		PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
 			(user: PFUser?, error: NSError?) -> Void in
 			if let user = user {
-				if user.isNew {
-					print("User signed up and logged in through Facebook!")
-				} else {
-					print("User logged in through Facebook!")
+				if let _ = user["interestedInWomen"] { //user has already signed up
+					self.performSegueWithIdentifier("logUserIn", sender: self)
 				}
-				self.performSegueWithIdentifier("showSignup", sender: self)
+				else {
+					self.performSegueWithIdentifier("showSignup", sender: self)
+				}
 			} else {
 				print("Uh oh. The user cancelled the Facebook login.")
 			}
@@ -36,7 +36,12 @@ class ViewController: UIViewController {
 	
 	override func viewDidAppear(animated: Bool) {
 		if let _ = PFUser.currentUser()?.username {
-			performSegueWithIdentifier("showSignup", sender: self)
+			if let _ = PFUser.currentUser()?["interestedInWomen"] { //user has already signed up
+				self.performSegueWithIdentifier("logUserIn", sender: self)
+			}
+			else {
+				self.performSegueWithIdentifier("showSignup", sender: self)
+			}
 		}
 	}
 	

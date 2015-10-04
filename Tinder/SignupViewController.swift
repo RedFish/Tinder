@@ -15,8 +15,44 @@ class SignupViewController: UIViewController {
 
 	@IBOutlet weak var profilePicture: UIImageView!
 	@IBOutlet weak var interestedInWomen: UISwitch!
+	@IBOutlet weak var username: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+		/**
+		//Create users to test the application
+		let urlArray = ["http://www.thezerosbeforetheone.com/wordpress/wp-content/uploads/2011/07/smurfette-300x225.gif",
+			"http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=44643840",
+			"http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=62956603",
+			"http://static.comicvine.com/uploads/square_small/0/2617/103863-63963-torongo-leela.JPG",
+			"http://www.theunknownpen.com/wp-content/uploads/2013/03/Velma.jpg",
+			"http://assets.makers.com/styles/mobile_gallery/s3/betty-boop-cartoon-576km071213_0.jpg?itok=9qNg6GUd",
+			"http://magicdisneyheros.altervista.org/images/midl/97.jpg"]
+		
+		var counter = 1
+		for url in urlArray {
+			
+			let url = NSURL(string: url)!
+			
+			if let data = NSData(contentsOfURL: url) {
+				let imageFile:PFFile = PFFile(data: data)
+				let user = PFUser()
+				let name = "user\(counter)"
+				user.username = name
+				user.password = "pass"
+				user["image"] = imageFile
+				user["name"] = name
+				user["interestedInWomen"] = false
+				user["gender"] = "female"
+				
+				counter++
+				do {
+					try user.signUp()
+					print("\(name) saved")
+				} catch { print("cannot save current user") }
+				
+			}
+		}
+		**/
 		
 		//get infos from facebook
 		let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, gender"])
@@ -33,6 +69,13 @@ class SignupViewController: UIViewController {
 					try PFUser.currentUser()?.save()
 				} catch { print("cannot save current user") }
 				
+				if let name = result["name"] as? String {
+					self.username.text = name
+				}
+				else{
+					self.username.text = ""
+				}
+				
 				
 				//get picture from facebook
 				let userId = result["id"] as! String
@@ -42,26 +85,10 @@ class SignupViewController: UIViewController {
 						self.profilePicture.image = UIImage(data: data)
 						let imageFile:PFFile = PFFile(data: data)
 						PFUser.currentUser()?["image"] = imageFile
-						do {
-							try PFUser.currentUser()?.save()
-						} catch { print("cannot save current user") }
-						
 					}
 				}
 			}
 		})
-		/*
-		// Create label programatically
-		let label = UILabel(frame: CGRectMake(self.view.bounds.width/2 - 100, self.view.bounds.height/2-50, 200, 100))
-		label.text = "Drag me"
-		label.textAlignment = NSTextAlignment.Center
-		view.addSubview(label)
-		
-		//add gesture
-		let gesture = UIPanGestureRecognizer(target: self, action: "drag:")
-		label.addGestureRecognizer(gesture)
-		label.userInteractionEnabled = true
-*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,46 +96,11 @@ class SignupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 	
-	
-	func drag(gesture: UIPanGestureRecognizer){
-		//move the object with the finger
-		let translation = gesture.translationInView(self.view)
-		let label = gesture.view as! UILabel
-		label.center = CGPoint(x: self.view.bounds.width/2 + translation.x, y: self.view.bounds.height/2 + translation.y)
-		
-		//rotate and scale depending the position
-		let xFromCenter = label.center.x - self.view.bounds.width/2
-		let scale = min(100/abs(xFromCenter),1)
-		let rotation = CGAffineTransformMakeRotation(xFromCenter / 200)
-		let stretch = CGAffineTransformScale(rotation, scale, scale)
-		label.transform = stretch
-		
-		//End of gesture
-		if gesture.state == UIGestureRecognizerState.Ended {
-			//detect side
-			if label.center.x < 100 {//left
-				print("left")
-			}
-			else if label.center.x > self.view.bounds.width - 100 {//right
-				print("right")
-			}
-			
-			//rest object to initial position
-			UIView.animateWithDuration(0.25, animations: { () -> Void in
-				let rotation = CGAffineTransformMakeRotation(0)
-				let stretch = CGAffineTransformScale(rotation, 1, 1)
-				label.transform = stretch
-				label.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height/2)
-			})
-		}
-		
-	}
-    
-
-	@IBAction func signUp(sender: AnyObject) {
+		@IBAction func signUp(sender: AnyObject) {
 		PFUser.currentUser()?["interestedInWomen"] = interestedInWomen.on
 		do {
 			try PFUser.currentUser()?.save()
+			self.performSegueWithIdentifier("logUserIn", sender: self)
 		} catch { print("cannot save current user") }
 	}
     /*
