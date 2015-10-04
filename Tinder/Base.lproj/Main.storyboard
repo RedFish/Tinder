@@ -184,9 +184,14 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Tinder" id="we9-st-JZj">
-                                        <barButtonItem key="leftBarButtonItem" title="  Log Out" id="ohL-EH-m7L">
+                                        <barButtonItem key="leftBarButtonItem" title=" Log Out" id="ohL-EH-m7L">
                                             <connections>
                                                 <segue destination="BYZ-38-t0r" kind="show" identifier="logOut" id="kzW-VB-NXz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Matches " id="OxH-1R-UTr">
+                                            <connections>
+                                                <segue destination="MNp-Vd-dIn" kind="show" id="Jgu-ni-hH9"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -201,7 +206,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to reject, right to accept" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4B-sp-8mk">
-                                <rect key="frame" x="51" y="483" width="272" height="20.5"/>
+                                <rect key="frame" x="55" y="483" width="264" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -214,8 +219,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="vCW-xg-eHU" secondAttribute="trailing" constant="-20" id="59d-BQ-6e0"/>
                             <constraint firstItem="vCW-xg-eHU" firstAttribute="top" secondItem="Ly1-sJ-pR2" secondAttribute="topMargin" id="CLk-dC-dcM"/>
                             <constraint firstItem="oaA-qp-FjD" firstAttribute="centerX" secondItem="Ly1-sJ-pR2" secondAttribute="centerX" id="E10-i4-qaA"/>
-                            <constraint firstItem="e4B-sp-8mk" firstAttribute="leading" secondItem="Ly1-sJ-pR2" secondAttribute="leadingMargin" constant="35" id="EYZ-gG-Zz9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="e4B-sp-8mk" secondAttribute="trailing" constant="36" id="OvX-oy-aOO"/>
                             <constraint firstItem="vCW-xg-eHU" firstAttribute="leading" secondItem="Ly1-sJ-pR2" secondAttribute="leadingMargin" constant="-20" id="TDf-6n-XGo"/>
                             <constraint firstItem="oaA-qp-FjD" firstAttribute="top" secondItem="vCW-xg-eHU" secondAttribute="bottom" constant="107" id="dbp-Ws-dW6"/>
                             <constraint firstItem="e4B-sp-8mk" firstAttribute="centerX" secondItem="Ly1-sJ-pR2" secondAttribute="centerX" id="woS-ur-aqL"/>
@@ -231,11 +234,103 @@
             </objects>
             <point key="canvasLocation" x="842.5" y="666.5"/>
         </scene>
+        <!--Contact View Controller-->
+        <scene sceneID="ExC-jZ-OtV">
+            <objects>
+                <tableViewController id="MNp-Vd-dIn" customClass="ContactViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="30" sectionFooterHeight="28" id="iQp-fK-v8F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="2MR-ob-Ute">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2J-CT-MG5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="z4h-Rk-LZq"/>
+                                    </constraints>
+                                    <items>
+                                        <navigationItem title="Matches" id="jRy-di-oNX">
+                                            <barButtonItem key="leftBarButtonItem" title=" Back" id="Mfi-qM-JXb">
+                                                <connections>
+                                                    <segue destination="Cdo-Op-tuB" kind="show" id="l4z-Ab-6ZI"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </navigationItem>
+                                    </items>
+                                </navigationBar>
+                            </subviews>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="x2J-CT-MG5" secondAttribute="trailing" id="mUg-Pn-xQJ"/>
+                                <constraint firstItem="x2J-CT-MG5" firstAttribute="top" secondItem="2MR-ob-Ute" secondAttribute="top" id="uAN-TG-ErJ"/>
+                                <constraint firstItem="x2J-CT-MG5" firstAttribute="leading" secondItem="2MR-ob-Ute" secondAttribute="leading" id="zxk-xb-I0P"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="slX-1n-mtk" customClass="TableViewCell" customModule="Tinder" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="90" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="slX-1n-mtk" id="ljZ-Bh-1w9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TfT-fh-G23">
+                                            <rect key="frame" x="0.0" y="0.0" width="59" height="59.5"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="59" id="Lav-6v-EzI"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvP-LT-mx4">
+                                            <rect key="frame" x="73" y="8" width="294" height="43.5"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="294" id="SAx-Wv-8MH"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="MvP-LT-mx4" firstAttribute="bottom" secondItem="ljZ-Bh-1w9" secondAttribute="bottomMargin" id="3AG-QB-2VA"/>
+                                        <constraint firstItem="MvP-LT-mx4" firstAttribute="top" secondItem="ljZ-Bh-1w9" secondAttribute="topMargin" id="8hJ-bQ-cJu"/>
+                                        <constraint firstItem="MvP-LT-mx4" firstAttribute="leading" secondItem="TfT-fh-G23" secondAttribute="trailing" constant="14" id="Y8d-d5-IeZ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="TfT-fh-G23" secondAttribute="bottom" constant="-8" id="mU4-ac-PnK"/>
+                                        <constraint firstItem="TfT-fh-G23" firstAttribute="top" secondItem="ljZ-Bh-1w9" secondAttribute="topMargin" constant="-8" id="wVW-Do-fBA"/>
+                                        <constraint firstItem="TfT-fh-G23" firstAttribute="leading" secondItem="ljZ-Bh-1w9" secondAttribute="leadingMargin" constant="-8" id="zud-ON-sa9"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="profilePicture" destination="TfT-fh-G23" id="pO1-zk-Uf3"/>
+                                    <outlet property="username" destination="MvP-LT-mx4" id="YBk-nS-gbb"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MNp-Vd-dIn" id="Zdm-oM-8FQ"/>
+                            <outlet property="delegate" destination="MNp-Vd-dIn" id="NDJ-4p-jXS"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X2C-6w-YvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="842.5" y="1431.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="loginwithfacebook.png" width="390" height="76"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6WG-Ab-LNi"/>
+        <segue reference="l4z-Ab-6ZI"/>
     </inferredMetricsTieBreakers>
 </document>

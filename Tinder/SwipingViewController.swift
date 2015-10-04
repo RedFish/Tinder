@@ -17,6 +17,20 @@ class SwipingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		//save geolocation of the user
+		PFGeoPoint.geoPointForCurrentLocationInBackground { (geopoint, error) -> Void in
+			if error != nil {
+				print("Error while getting location")
+			}
+			else if let geopoint = geopoint {
+				PFUser.currentUser()?["location"] = geopoint
+				do {
+					try PFUser.currentUser()?.save()
+				} catch { print("error while saving location") }
+			}
+		}
+		
+		//Initialize picture
 		updateImage()
 		
 		//add gesture
@@ -105,6 +119,10 @@ class SwipingViewController: UIViewController {
 			ignoredUsers += rejectedUsers as! [String]
 		}
 		userQuery?.whereKey("objectId", notContainedIn: ignoredUsers)
+		//geolocation filter
+		if let userLocation = PFUser.currentUser()!["location"] {
+			userQuery?.whereKey("location", nearGeoPoint: userLocation as! PFGeoPoint, withinKilometers: 80)
+		}
 		userQuery?.limit = 1
 		
 		userQuery?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
@@ -134,6 +152,11 @@ class SwipingViewController: UIViewController {
 	
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "logOut" {
+			PFUser.currentUser()?["accepted"] = []
+			PFUser.currentUser()?["rejected"] = []
+			do {
+				try PFUser.currentUser()?.save()
+			} catch { print("error while saving accepted/rejected") }
 			PFUser.logOut()
 		}
     }

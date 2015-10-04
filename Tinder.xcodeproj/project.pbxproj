@@ -13,6 +13,8 @@
 		D4AD62411BBDDC2400F4D6C7 /* loginwithfacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AD62401BBDDC2400F4D6C7 /* loginwithfacebook.png */; settings = {ASSET_TAGS = (); }; };
 		D4AD62431BBDDD4700F4D6C7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AD62421BBDDD4700F4D6C7 /* SignupViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D4AD62451BC00B4E00F4D6C7 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AD62441BC00B4E00F4D6C7 /* SwipingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		D4AD62471BC123B100F4D6C7 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AD62461BC123B100F4D6C7 /* ContactViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		D4AD62491BC133E300F4D6C7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AD62481BC133E300F4D6C7 /* TableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		D4DB6CC71BB9E06600081A52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DB6CC61BB9E06600081A52 /* AppDelegate.swift */; };
 		D4DB6CC91BB9E06600081A52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DB6CC81BB9E06600081A52 /* ViewController.swift */; };
 		D4DB6CCC1BB9E06600081A52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DB6CCA1BB9E06600081A52 /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 		D4AD62401BBDDC2400F4D6C7 /* loginwithfacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginwithfacebook.png; sourceTree = "<group>"; };
 		D4AD62421BBDDD4700F4D6C7 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		D4AD62441BC00B4E00F4D6C7 /* SwipingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
+		D4AD62461BC123B100F4D6C7 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		D4AD62481BC133E300F4D6C7 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		D4DB6CC31BB9E06600081A52 /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DB6CC61BB9E06600081A52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DB6CC81BB9E06600081A52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				D4DB6CC81BB9E06600081A52 /* ViewController.swift */,
 				D4AD62421BBDDD4700F4D6C7 /* SignupViewController.swift */,
 				D4AD62441BC00B4E00F4D6C7 /* SwipingViewController.swift */,
+				D4AD62461BC123B100F4D6C7 /* ContactViewController.swift */,
+				D4AD62481BC133E300F4D6C7 /* TableViewCell.swift */,
 				D4DB6CCA1BB9E06600081A52 /* Main.storyboard */,
 				D4DB6CCD1BB9E06600081A52 /* Assets.xcassets */,
 				D4DB6CCF1BB9E06600081A52 /* LaunchScreen.storyboard */,
@@ -216,7 +222,9 @@
 				D4AD62431BBDDD4700F4D6C7 /* SignupViewController.swift in Sources */,
 				D4DB6CC91BB9E06600081A52 /* ViewController.swift in Sources */,
 				D4AD62451BC00B4E00F4D6C7 /* SwipingViewController.swift in Sources */,
+				D4AD62491BC133E300F4D6C7 /* TableViewCell.swift in Sources */,
 				D4DB6CC71BB9E06600081A52 /* AppDelegate.swift in Sources */,
+				D4AD62471BC123B100F4D6C7 /* ContactViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
