@@ -121,7 +121,7 @@ class SwipingViewController: UIViewController {
 		userQuery?.whereKey("objectId", notContainedIn: ignoredUsers)
 		//geolocation filter
 		if let userLocation = PFUser.currentUser()!["location"] {
-			userQuery?.whereKey("location", nearGeoPoint: userLocation as! PFGeoPoint, withinKilometers: 80)
+			userQuery?.whereKey("location", nearGeoPoint: userLocation as! PFGeoPoint, withinKilometers: 800)
 		}
 		userQuery?.limit = 1
 		
